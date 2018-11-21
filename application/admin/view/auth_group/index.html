@@ -1,0 +1,42 @@
+{layout name="public/layout" /}
+<div class="col-md-10">
+    <ol class="breadcrumb">
+        <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+        <li><a href="#">权限管理</a></li>
+        <li class="active">权限列表</li>
+        <a href="" style="float:right;height:25px;" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span></a>
+        <span style="clear:both"></span>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="btn btn-primary" href="{:url('add')}" style="color:white" ><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加权限</a>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>管理员名称</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                {volist name='data' id='dat'}
+                <tr>
+                    <td>{$dat.id}</td>
+                    <td>
+                      {$dat.title}
+                    </td>
+
+                    {if condition="$dat.status eq 1"}
+                    <td style="color: #00a0e9">正常</td>
+                    {else/}
+                    <td style="color: #a94442">禁用</td>
+                    {/if}
+                    <td><a class="glyphicon glyphicon-trash" href="{:url('del',['id'=>$dat.id])}"></a>&nbsp;&nbsp;|&nbsp;&nbsp; <a class="glyphicon glyphicon-tag"  href="{:url('update',['id'=>$dat.id])}"></a></td>
+                </tr>
+                {/volist}
+            </table>
+        </div>
+        <div class="panel-footer">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+{layout name="public/layout" /}
+<div class="col-md-10">
+    <ol class="breadcrumb">
+        <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+        <li><a href="#">配置管理</a></li>
+        <li class="active">配置列表</li>
+        <a href="" style="float:right;height:25px;" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span></a>
+        <span style="clear:both"></span>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="btn btn-primary" href="{:url('add')}" style="color:white"><span class="glyphicon glyphicon-plus" ></span>&nbsp;&nbsp;添加配置</a>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>id</th>
+                    <th>配置中文</th>
+                    <th>配置英文</th>
+                    <th>配置类型</th>
+                    <th>操作</th>
+                </tr>
+                {volist name="data" id="dat"}
+                <tr>
+                    <td>{$dat.id}</td>
+                    <td>{$dat.cname}</td>
+                    <td>{$dat.ename}</td>
+                    <td>
+                        {switch name="$dat.type" }
+                        {case value="1"}单行文本{/case}
+                        {case value="2"}多行文本{/case}
+                        {case value="3"}单选按钮{/case}
+                        {case value="4"}多选按钮{/case}
+                        {case value="5"}下拉菜单{/case}
+                        {default /}未知
+                        {/switch}
+                    </td>
+                    <td><a class="glyphicon glyphicon-trash" href="{:url('del',['id'=>$dat.id])}"></a>&nbsp;&nbsp;|&nbsp;&nbsp; <a class="glyphicon glyphicon-tag"  href="{:url('update',['id'=>$dat.id])}"></a></td>
+                </tr>
+                {/volist}
+            </table>
+        </div>
+        <div class="panel-footer">
+            {$page}
+        </div>
+    </div>
+</div>

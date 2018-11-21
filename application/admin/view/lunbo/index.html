@@ -1,0 +1,148 @@
+{layout name="public/layout" /}
+<script src="__STATIC__/public/up/jquery.uploadify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__STATIC__/public/up/uploadify.css">
+<div class="col-md-10">
+    <ol class="breadcrumb">
+        <li><a href="{:url('index/index')}"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+        <li><a href="#">轮播管理</a></li>
+        <li class="active">轮播列表</li>
+        <a href="" style="float:right;height:25px;" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span></a>
+        <span style="clear:both"></span>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <button class="btn btn-danger" onclick="delAll()"> <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;批量删除</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#add"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加轮播</button>
+            <div class="pull-right" style="margin-left:30px;"><p class="tot">共有数据:&nbsp;<b id="tot">{$count}</b>&nbsp;条</p></div>
+            <form class="form-inline pull-right" action="{:url('index')}" role="form">
+                <div class="form-group">
+                    <input type="text" name="search" class="form-control" placeholder="请输入要搜索内容">
+                </div>
+                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search">&nbsp;搜索</span></button>
+            </form>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th><input type="checkbox" name="" id="" class="checkAll" ></th>
+                    <th>id</th>
+                    <th>图片</th>
+                    <th>链接</th>
+                    <th>排序</th>
+                    <th>操作</th>
+                </tr>
+                {volist name='data' id='dat'}
+                <tr>
+                    <td><input type="checkbox" class="checks" value="{$dat.id}"/></td>
+                    <td>{$dat.id}</td>
+                    <td><img src="__STATIC__/uploads/{$dat.img}" width="80px" height="50px"/></td>
+                    <td>{$dat.href}</td>
+                    <td><input type="text" name="sort" value="{$dat.sort}" onblur="sort(this,{$dat.id})"/></td>
+                    <td><a class="glyphicon glyphicon-trash" href="{:url('del',['id'=>$dat.id])}"></a>&nbsp;&nbsp;|&nbsp;&nbsp; <a class="glyphicon glyphicon-tag"  href="{:url('update',['id'=>$dat.id])}"></a></td>
+                </tr>
+                {/volist}
+            </table>
+        </div>
+        <div class="panel-footer">
+
+        </div>
+    </div>
+</div>
+<!-- 添加弹出框 -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">添加轮播</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{:url('add')}" method="post" >
+                    <div class="form-group">
+                        <label for="">图片</label>
+                        <div id="queue"></div>
+                        <input type="hidden" name="img" id="addImg" value=""/>
+                        <input id="file_upload" name="file_upload" type="file" multiple="true"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">链接</label>
+                        <input type="text" name="href" class="form-control" id="">
+                    </div>
+                    <div class="form-group">
+                        <input value="提交" class="btn btn-success" type="submit">
+                        <input type="reset" value="重置" class="btn btn-danger">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 修改弹出框 -->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">修改轮播</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" onsubmit="return false" id="updateForm">
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    //文件上传
+    $(function(){
+        $('#file_upload').uploadify({
+            'swf':'__STATIC__/public/up/uploadify.swf',
+            'uploader' : "{:url('ajax_upload')}",
+            'buttonText':'上传轮播图片',
+            'fileObjName':'file',
+            onUploadSuccess:function(file,data,response){
+                img="<img src='__STATIC__/uploads/"+data+"',width='200px' height='150px'/>";
+                $('#queue').html(img);
+                $('#addImg').val(data);
+            }
+        });
+    });
+    //排序
+    function sort(obj,id){
+        //alert($(obj).val());
+        number=$(obj).val();
+        $.post("{:url('sort')}",{sort:number,id:id},function(data){
+            $(this).val(number);
+        });
+    }
+    //批量勾选check
+    $('.checkAll').click(function(){
+        var mom=document.getElementsByClassName('checkAll');
+        var cbox = document.getElementsByClassName('checks');
+        if(mom[0].checked != '') {
+            for (i = 0; i < cbox.length; i++) {
+                cbox[i].checked = 'checked';
+            }
+        }else{
+            for (i = 0; i < cbox.length; i++) {
+                cbox[i].checked = '';
+            }
+        }
+    });
+    //批量跳转删除
+    function delAll(){
+        data=$('.checks:checked');
+        arr=[];
+        for(i=0;i<data.length;i++){
+            arr[i]=data.eq(i).val();
+        }
+        str=arr.join(',');
+        //string=decodeURI("{:url('delAll',['id'=>"+str+"])}");
+        window.location.href="{:url('delAll')}?id="+str;
+        //console.log(decodeURI("{:url('delAll',['id'=>"+str+"])}"));
+    }
+</script>

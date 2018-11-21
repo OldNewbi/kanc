@@ -1,0 +1,19 @@
+<div class="form-group">
+    <label for="">USER</label>
+    <input type="text" name="username" class="form-control" value="{$data.username}">
+</div>
+<div class="form-group">
+    <label for="">PASS</label>
+    <input type="password" name="password" class="form-control" >
+</div>
+<div class="form-group">
+    <label for="">Statu</label>
+    <br>
+    <input type="radio" name="status" value="1" {$data.status==1?'checked':''}>正常
+    <input type="radio" name="status" value="0" {$data.status==0?'checked':''}>禁用
+    <input type="hidden" name="id" value="{$data.id}"/>
+</div>
+<div class="form-group">
+    <input value="提交" class="btn btn-success" onclick="edit({$data.id})">
+    <input type="reset" value="重置" class="btn btn-danger">
+</div>

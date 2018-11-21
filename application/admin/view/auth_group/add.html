@@ -1,0 +1,110 @@
+{layout name="public/layout" /}
+<div class="col-md-10">
+    <ol class="breadcrumb">
+        <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+        <li><a href="#">规则管理</a></li>
+        <li class="active">添加规则</li>
+        <a href="" style="float:right;height:25px;" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span></a>
+        <span style="clear:both"></span>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="">管理员名称</label>
+                    <select name="title" id="" class="form-control">
+                        {volist name='data' id='dat'}
+                        <option value="{$dat.username}">{$dat.username}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">状态</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="status" value="1" checked/>开启
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="status" value="0"/>禁用
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="">规则</label>
+                    <table>
+                        {volist name='tree' id='tree'}
+                        <tr>
+                            <td>
+                                <?php
+                                    echo str_repeat("&nbsp;",$tree['level']*5);
+                                ?>
+                                <input type="checkbox" name="rules[]" dataid="{$tree.dataid}" value="{$tree.id}" class="{$tree.level==0?'parent':'child'}"/>
+                                <span>{$tree.title}</span>
+                            </td>
+                        </tr>
+                        {/volist}
+                    </table>
+                </div>
+                <div class="form-group">
+                    <input value="提交" class="btn btn-success" type="submit">
+                    <input type="reset" value="重置" class="btn btn-danger">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    let parents=document.getElementsByClassName('parent');
+    let childs=document.getElementsByClassName('child');
+    //console.log(parents[1].getAttribute('dataid'));
+    //console.log(childs[0].getAttribute('dataid').split('-')[0]);
+    //选中父亲，儿子全选
+    for(let i=0;i<parents.length;i++){
+        parents[i].onclick=function(){
+            //console.log('111');
+            //console.log(parents[i].checked);
+            for(let j=0;j<childs.length;j++) {
+                if (parents[i].checked ) {
+                    if(childs[j].getAttribute('dataid').split('-')[0] == parents[i].getAttribute('dataid')) {
+                        //console.log(i);
+                        childs[j].checked = 'checked';
+                    }
+                }else{
+                    if(childs[j].getAttribute('dataid').split('-')[0] == parents[i].getAttribute('dataid'))
+                    childs[j].checked = '';
+                }
+            }
+        }
+    }
+    //选中儿子，父亲也选中
+    for(let i=0;i<childs.length;i++){
+        childs[i].onclick=function(){
+            for(let j=0;j<parents.length;j++){
+                if (childs[i].checked) {
+                    //console.log(i);
+                    if(childs[i].getAttribute('dataid').split('-')[0] == parents[j].getAttribute('dataid')) {
+                        parents[j].checked = 'checked';
+                    }
+                }else{
+                    if(childs[i].getAttribute('dataid').split('-')[0] == parents[j].getAttribute('dataid')){
+                        //当儿子当中只有一个处于选中状态时才取消父亲的勾选状态，否则不取消
+                        if(sons(parents[j])<=0){
+                            parents[j].checked = '';
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //返回父亲下儿子的选中数量
+    function sons(father){
+        var flag=0;
+        if(father.checked){
+            for(var i=0;i<childs.length;i++){
+                if(childs[i].getAttribute('dataid').split('-')[0]==father.getAttribute('dataid') && childs[i].checked){
+                   flag++;
+                }
+            }
+        }
+        return flag;
+    }
+</script>

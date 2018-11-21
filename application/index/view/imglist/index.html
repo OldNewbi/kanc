@@ -1,0 +1,166 @@
+<link rel="stylesheet" type="text/css" href="__STATIC__/home/list.css"  />
+{include file="public/header"/}
+
+	<div class="content">
+		<div class="content_home">
+			<div class="znyj">
+				<div class="znyj-title">
+					<div class="znyjtxt">评测</div>
+					<div class="znyjtxtr">硬件评测、合作请联系：post@ikanchai.com</div><hr>
+				</div>
+				<div class="znyj_c">
+					<div class="znyj_c_box">
+						<ul>
+							<li class="boxpic">
+								<a href="" target="_blank" title=""> 
+									<img src="__STATIC__/home/1.jpg" width="360" height="230"/>
+								</a>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<a href="" target="_blank" title="">华为 P10 深度评测：一个「全面顶配」的小屏旗舰</a>
+									</dt>
+									<dd>
+										<p class="d">Xiaolong, Meng / 2017-03-25 10:08</p>
+										<p class="c">我们认为，P10 还是有不错的购买价值的。特别是如果你打算买一部小屏旗舰手机但又受不了 iPhone 7 的充电速度和缺失的耳机插孔，华为 P10 ...</p>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<div class="znyj_c_box">
+						<ul>
+							<li class="boxpic">
+								<a href="" target="_blank" title=""> 
+									<img src="__STATIC__/home/1.jpg" width="360" height="230"/>
+								</a>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<a href="" target="_blank" title="">华为 P10 深度评测：一个「全面顶配」的小屏旗舰</a>
+									</dt>
+									<dd>
+										<p class="d">Xiaolong, Meng / 2017-03-25 10:08</p>
+										<p class="c">我们认为，P10 还是有不错的购买价值的。特别是如果你打算买一部小屏旗舰手机但又受不了 iPhone 7 的充电速度和缺失的耳机插孔，华为 P10 ...</p>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<div class="znyj_c_box">
+						<ul>
+							<li class="boxpic">
+								<a href="" target="_blank" title=""> 
+									<img src="__STATIC__/home/1.jpg" width="360" height="230"/>
+								</a>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<a href="" target="_blank" title="">华为 P10 深度评测：一个「全面顶配」的小屏旗舰</a>
+									</dt>
+									<dd>
+										<p class="d">Xiaolong, Meng / 2017-03-25 10:08</p>
+										<p class="c">我们认为，P10 还是有不错的购买价值的。特别是如果你打算买一部小屏旗舰手机但又受不了 iPhone 7 的充电速度和缺失的耳机插孔，华为 P10 ...</p>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<div class="znyj_c_box">
+						<ul>
+							<li class="boxpic">
+								<a href="" target="_blank" title=""> 
+									<img src="__STATIC__/home/1.jpg" width="360" height="230"/>
+								</a>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<a href="" target="_blank" title="">华为 P10 深度评测：一个「全面顶配」的小屏旗舰</a>
+									</dt>
+									<dd>
+										<p class="d">Xiaolong, Meng / 2017-03-25 10:08</p>
+										<p class="c">我们认为，P10 还是有不错的购买价值的。特别是如果你打算买一部小屏旗舰手机但又受不了 iPhone 7 的充电速度和缺失的耳机插孔，华为 P10 ...</p>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="hlgd-page page-nav">
+					<ul class='paginationall'>
+						<a href="javascript:void(0);" class="prev disable">&lt;</a><a href="javascript:void(0);" class="current">1</a><a href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a><a href="">6</a><a href="">... 50</a><a href="" class="next">&gt;</a> 
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.box_skitter_large').skitter({
+            theme: 'clean',
+            dots: true,
+            preview: false,
+            numbers_align: 'right'
+        });
+    });
+</script>
+<script type="text/javascript">
+    (function () {
+        var baiduSearch = $("#baiduSearch");
+        if (baiduSearch == "undefined") return ;
+        var but = baiduSearch.next("i[class=icon-search]");
+        var promptText = baiduSearch.attr("placeholder");
+        but.css({
+            cursor:"pointert"
+        });
+        baiduSearch.focus(function () {
+            searchVal = baiduSearch.val();
+            baiduSearch.attr("placeholder",'');
+            if (searchVal == promptText) baiduSearch.val("");
+        })
+        var searchVal = null;
+        var link = "http://so.ikanchai.com/cse/search?s=754371921301160334&ie=utf-8&q=";
+        var pattern = new RegExp("^\\s*$","i");
+        but.click(function () {
+            searchVal = baiduSearch.val();
+            if (!pattern.test(searchVal)) {
+                link += searchVal;
+                window.open(link);
+            }
+            else {
+                baiduSearch.val(promptText);
+                return ;
+            }
+        });
+    })();
+</script>
+<script>
+    $(function () {
+        var headUsername = $('.head-username');
+        var headLogout =  $('.head-logout');
+        var headRegister =  $('.head-register');
+        var headLogin = $(".head-login");
+        var headMember = $(".head-member");
+        var hideCss = {color:"#ddd",cursor:"default"};
+        if ($.cookie(COOKIE_PRE+'auth')) {
+            var username = $.cookie(COOKIE_PRE+'username');
+            if(!username) username = $.cookie(COOKIE_PRE+'rememberusername');
+            headUsername.text(username);
+            headLogout.attr('href', APP_URL + '?app=member&controller=index&action=logout');
+            headMember.attr('href', APP_URL + '?app=contribution&controller=panel&action=index');
+            $('.login').hide();
+            $('.tougao').hide();
+        } else {
+            headRegister.attr('href', APP_URL + '?app=member&controller=index&action=register');
+            headLogin.attr('href', APP_URL + '?app=member&controller=index&action=login');
+            $('.loginok').hide();
+        }
+    })
+</script>
+{include file="public/footer"/}

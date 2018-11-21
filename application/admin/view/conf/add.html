@@ -1,0 +1,48 @@
+{layout name="public/layout" /}
+<div class="col-md-10">
+    <ol class="breadcrumb">
+        <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+        <li><a href="#">配置管理</a></li>
+        <li class="active">配置列表</li>
+        <a href="" style="float:right;height:25px;" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span></a>
+        <span style="clear:both"></span>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="">配置中文</label>
+                    <input type="text" name="cname" class="form-control" id="" value="">
+                </div>
+                <div class="form-group">
+                    <label for="">配置英文</label>
+                    <input type="text" name="ename" class="form-control" id="" value="">
+                </div>
+                <div class="form-group">
+                    <label for="">配置类型</label>
+                    <div class="form-group">
+                        <select name="type" id="" class="form-control">
+                            <option value="0">选择类型</option>
+                            <option value="1">单行文本</option>
+                            <option value="2">多行文本</option>
+                            <option value="3">单选按钮</option>
+                            <option value="4">多选按钮</option>
+                            <option value="5">下拉菜单</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">可选值</label>
+                    <textarea name="vals" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <input value="提交" class="btn btn-success" type="submit">
+                    <input type="reset" value="重置" class="btn btn-danger">
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+
+        </div>
+    </div>
+</div>

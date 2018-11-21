@@ -1,0 +1,9 @@
+<tr id="tr{$dat.id}">
+    <td><input type="checkbox" name="" value="{$dat.id}" class="checks"></td>
+    <td>{$dat.id}</td>
+    <td>{$dat.username}</td>
+    <td>{$dat.lastlogin==0?'从未登录':date("Y-m-d H:i:s",$dat.lastlogin)}</td>
+    <td>0</td>
+    <td>{$dat.status==1?"<button class='btn btn-info'>正常</button>":"<button class='btn btn-danger'>禁用</button>"}</td>
+    <td><span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#del" onclick="find({$dat.id})"></span>&nbsp;&nbsp;|&nbsp;&nbsp; <span class="glyphicon glyphicon-tag" onclick="upFind({$dat.id})" data-toggle="modal" data-target="#edit"></span></td>
+</tr>

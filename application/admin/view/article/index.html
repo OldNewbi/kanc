@@ -1,0 +1,59 @@
+{layout name="public/layout" /}
+<script src="__STATIC__/public/up/jquery.uploadify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__STATIC__/public/up/uploadify.css">
+<div class="col-md-10">
+    <ol class="breadcrumb">
+        <li><a href="{:url('index/index')}"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+        <li><a href="#">文章管理</a></li>
+        <li class="active">文章列表</li>
+        <a href="" style="float:right;height:25px;" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span></a>
+        <span style="clear:both"></span>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <button class="btn btn-danger" onclick="delAll()"> <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;批量删除</button>
+            <a class="btn btn-primary" href="{:url('add')}"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加文章</a>
+            <div class="pull-right" style="margin-left:30px;"><p class="tot">共有数据:&nbsp;<b id="tot"></b>&nbsp;条</p></div>
+            <form class="form-inline pull-right" action="{:url('index')}" role="form">
+                <div class="form-group">
+                    <input type="text" name="search" class="form-control" placeholder="请输入要搜索内容">
+                </div>
+                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search">&nbsp;搜索</span></button>
+            </form>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th><input type="checkbox" name="" id="" class="checkAll" ></th>
+                    <th>id</th>
+                    <th>文章标题</th>
+                    <th>文章图片</th>
+                    <th>作者</th>
+                    <th>所属栏目</th>
+                    <th>操作</th>
+                </tr>
+                {volist name="data" id="dat"}
+                <tr>
+                    <th><input type="checkbox" name="" id="" class="checkAll" ></th>
+                    <td>{$dat.id}</td>
+                    <td><a href="{:url('detail',array('id'=>$dat.id))}">{$dat.title}</a></td>
+                    <td><img src="__STATIC__/uploads/article/{$dat.img}" height="55px" width="80px"/></td>
+                    <td>{$dat.name}</td>
+                    <td>{$dat.cname}</td>
+                    <td><a class="glyphicon glyphicon-trash" href="{:url('del',array('id'=>$dat.id))}"></a>&nbsp;&nbsp;|&nbsp;&nbsp; <a class="glyphicon glyphicon-tag" href="{:url('update',array('id'=>$dat.id))}"></a></td>
+                </tr>
+                {/volist}
+            </table>
+        </div>
+        <div class="panel-footer">
+            {$page}
+        </div>
+    </div>
+</div>
+<!-- 添加弹出框 -->
+
+
+
+<script>
+
+</script>

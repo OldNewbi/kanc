@@ -1,0 +1,43 @@
+{layout name="public/layout" /}
+<div class="col-md-10">
+    <ol class="breadcrumb">
+        <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+        <li><a href="#">规则管理</a></li>
+        <li class="active">添加规则</li>
+        <a href="" style="float:right;height:25px;" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span></a>
+        <span style="clear:both"></span>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="">上级权限</label>
+                    <select name="pid" id="" class="form-control">
+                        <option value="0">顶级权限</option>
+                        {volist name="rule" id="rule"}
+                        <option value="{$rule.id}">
+                            <?php
+                                if($rule['level']!=0){
+                                    echo '|';
+                                }
+                                echo str_repeat('--', $rule['level']);
+                            ?>{$rule.title}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">权限名称</label>
+                    <input type="text" name="title" class="form-control" id="" value="">
+                </div>
+                <div class="form-group">
+                    <label for="">控/方</label>
+                    <input type="text" name="name" class="form-control" id="" value="">
+                </div>
+                <div class="form-group">
+                    <input value="提交" class="btn btn-success" type="submit">
+                    <input type="reset" value="重置" class="btn btn-danger">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

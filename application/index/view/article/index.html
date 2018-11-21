@@ -1,0 +1,118 @@
+﻿<link rel="stylesheet" type="text/css" href="__STATIC__/home/list.css"  />
+{include file="public/header"/}
+		<div class="content">
+			<div class="content_home">
+				<div class="home_left">
+					<div class="hlgd">
+						<div class="hlgd-title">
+							<div class="hlgdttxt">科技头条</div><hr>
+						</div>
+						<div class="hlgd-content">
+							<div class="hlgd-box">
+								<dl>
+									<dt>
+										<a href="" target="_blank" title="5亿美元融资恐无法完成  法拉第未来该何去何从？ "> <img src="__STATIC__/home/1.jpg"  alt="5亿美元融资恐无法完成  法拉第未来该何去何从？ " width="250" height="165"/>
+										</a>
+									</dt>
+									<dd>
+										<h3>
+											<span class="dj">原创</span>
+											<a href="" target="_blank" title="5亿美元融资恐无法完成  法拉第未来该何去何从？ ">5亿美元融资恐无法完成 法拉第未来该何去何从？ </a>
+										</h3>
+										<p>据外媒报道，曾经号称要超越特斯拉的贾跃亭面临着一个新障碍，据知情人士透露，他的美国电动汽车初创公司可能无法完成5亿美元的最新一轮融资。知情人士称，如果法拉第无法在12月之前完成A轮融资，就需要立...</p>
+										<p>李晓荆 / 原创 / 2017-11-28 16:57</p>
+									</dd>
+								</dl>
+							</div>
+							<div class="hlgd-box">
+								<dl>
+									<dt>
+										<a href="" target="_blank" title="5亿美元融资恐无法完成  法拉第未来该何去何从？ "> <img src="__STATIC__/home/1.jpg"  alt="5亿美元融资恐无法完成  法拉第未来该何去何从？ " width="250" height="165"/>
+										</a>
+									</dt>
+									<dd>
+										<h3>
+											<span class="dj">原创</span>
+											<a href="" target="_blank" title="5亿美元融资恐无法完成  法拉第未来该何去何从？ ">5亿美元融资恐无法完成 法拉第未来该何去何从？ </a>
+										</h3>
+										<p>据外媒报道，曾经号称要超越特斯拉的贾跃亭面临着一个新障碍，据知情人士透露，他的美国电动汽车初创公司可能无法完成5亿美元的最新一轮融资。知情人士称，如果法拉第无法在12月之前完成A轮融资，就需要立...</p>
+										<p>李晓荆 / 原创 / 2017-11-28 16:57</p>
+									</dd>
+								</dl>
+							</div>
+						</div>
+						<div class="hlgd-page page-nav">
+							<ul class='paginationall'>
+								<a href="javascript:void(0);" class="prev disable">&lt;</a><a href="javascript:void(0);" class="current">1</a><a href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a><a href="">6</a><a href="">... 50</a><a href="" class="next">&gt;</a> 
+							</ul>
+						</div>
+					</div>
+				</div>
+				{include file="public/right"/}
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+        $(document).ready(function() {
+            $('.box_skitter_large').skitter({
+                theme: 'clean',
+                dots: true,
+                preview: false,
+                numbers_align: 'right'
+            });
+        });
+	</script>
+	<script type="text/javascript">
+        (function () {
+            var baiduSearch = $("#baiduSearch");
+            if (baiduSearch == "undefined") return ;
+            var but = baiduSearch.next("i[class=icon-search]");
+            var promptText = baiduSearch.attr("placeholder");
+            but.css({
+                cursor:"pointert"
+            });
+            baiduSearch.focus(function () {
+                searchVal = baiduSearch.val();
+                baiduSearch.attr("placeholder",'');
+                if (searchVal == promptText) baiduSearch.val("");
+            })
+            var searchVal = null;
+            var link = "http://so.ikanchai.com/cse/search?s=754371921301160334&ie=utf-8&q=";
+            var pattern = new RegExp("^\\s*$","i");
+            but.click(function () {
+                searchVal = baiduSearch.val();
+                if (!pattern.test(searchVal)) {
+                    link += searchVal;
+                    window.open(link);
+                }
+                else {
+                    baiduSearch.val(promptText);
+                    return ;
+                }
+            });
+        })();
+	</script>
+	<script>
+        $(function () {
+            var headUsername = $('.head-username');
+            var headLogout =  $('.head-logout');
+            var headRegister =  $('.head-register');
+            var headLogin = $(".head-login");
+            var headMember = $(".head-member");
+            var hideCss = {color:"#ddd",cursor:"default"};
+            if ($.cookie(COOKIE_PRE+'auth')) {
+                var username = $.cookie(COOKIE_PRE+'username');
+                if(!username) username = $.cookie(COOKIE_PRE+'rememberusername');
+                headUsername.text(username);
+                headLogout.attr('href', APP_URL + '?app=member&controller=index&action=logout');
+                headMember.attr('href', APP_URL + '?app=contribution&controller=panel&action=index');
+                $('.login').hide();
+                $('.tougao').hide();
+            } else {
+                headRegister.attr('href', APP_URL + '?app=member&controller=index&action=register');
+                headLogin.attr('href', APP_URL + '?app=member&controller=index&action=login');
+                $('.loginok').hide();
+            }
+        })
+	</script>
+{include file="public/footer"/}

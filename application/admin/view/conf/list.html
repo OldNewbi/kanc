@@ -1,0 +1,72 @@
+{layout name="public/layout" /}
+<div class="col-md-10">
+    <ol class="breadcrumb">
+        <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+        <li><a href="#">配置项管理</a></li>
+        <li class="active">配置项列表</li>
+        <a href="" style="float:right;height:25px;" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span></a>
+        <span style="clear:both"></span>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="" method="POST">
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>配置项名称</th>
+                        <th>值</th>
+                    </tr>
+                    {volist name="data" id="dat"}
+                    <tr>
+                        <td>{$dat.cname}</td>
+                        {if condition="$dat.type eq 1"}
+                        <td><input type="text" value="{$dat.val}" class="form-control" name="{$dat.ename}"></td>
+                        {/if}
+                        {if condition="$dat.type eq 2"}
+                        <td><textarea name="{$dat.ename}" id="" cols="30" rows="10">{$dat.val}</textarea></td>
+                        {/if}
+                        {if condition="$dat.type eq 3"}
+                        <td>
+                            <?php
+                		$arr=explode(',',$dat['vals']);
+                		foreach ($arr as $key => $value) {
+                            ?>
+                            <label class="radio-inline">
+                                <input type="radio" name="{$dat.ename}" value="<?php echo $value ?>" <?php echo $value==$dat['val']?'checked':'' ?>><?php echo $value; ?>
+                            </label>
+                            <?php
+                		}
+                	 ?>
+                        </td>
+                        {/if}
+                        {if condition="$dat.type eq 4"}
+                        <td>
+                            <label class="radio-inline">
+                                <input type="checkbox" name="{$dat.ename}" value="{$dat.vals}" {$dat.val==$dat.vals?'checked':''}>{$dat.vals}
+                            </label>
+                        </td>
+                        {/if}
+                        {if condition="$dat.type eq 5"}
+                        <td>
+                            <select name="{$dat.ename}" id="" class="form-control">
+                                <?php
+                				$arr=explode(',',$dat['vals']);
+                				foreach ($arr as $key => $value) {
+                                ?>
+                                <option value="<?php echo $value ?>" name="{$dat.ename}" <?php echo $value==$dat['val']?'selected':'' ?>><?php echo $value ?></option>
+                                <?php
+                			 	}
+                			  ?>
+                            </select>
+                        </td>
+                        {/if}
+                    </tr>
+                    {/volist}
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="提交"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

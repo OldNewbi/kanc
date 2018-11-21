@@ -1,0 +1,13 @@
+<td><input type="checkbox" name="" value="{$dat.id}" class="checks"></td>
+<td>{$dat.id}</td>
+<td>{$dat.username}</td>
+<td>{$dat.lastlogin==0?'从未登录':date("Y-m-d H:i:s",$dat.lastlogin)}</td>
+<td>0</td>
+<td>
+    {if condition="$dat.status eq 1"}
+    <button class="btn btn-info" onclick="status(this,{$dat.id},{$dat.status})">正常</button>
+    {else /}
+    <button class="btn btn-danger" onclick="status(this,{$dat.id},{$dat.status})">禁用</button>
+    {/if}
+</td>
+<td><span class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#del" ) onclick="find({$dat.id})"></span>&nbsp;&nbsp;|&nbsp;&nbsp; <span class="glyphicon glyphicon-tag" onclick="upFind({$dat.id})" data-toggle="modal" data-target="#edit"></span></td>
